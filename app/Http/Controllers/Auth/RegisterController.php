@@ -3,9 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RegisterUserRequest;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Repositories\Contracts\UserRepositoryContract;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -30,23 +35,36 @@ class RegisterController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
+    private UserRepositoryContract $userRepository;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(UserRepositoryContract $userRepository)
     {
         $this->middleware('guest');
+        $this->userRepository = $userRepository;
     }
 
+
     /**
-     * Get a validator for an incoming registration request.
+     * Handle a registration request for the application.
      *
-     * @param  array  $data
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Contracts\Validation\Validator
      */
+//    public function register(RegisterUserRequest $request)
+//    {
+//        $user =$this->userRepository->find(1);
+////        event(new Registered($user = $this->userRepository->create($request->data()->toArray())));
+//        event(new Registered($user));
+//
+//        $this->guard()->login($user);
+//    }
+
+
     protected function validator(array $data)
     {
         return Validator::make($data, [
@@ -56,12 +74,7 @@ class RegisterController extends Controller
         ]);
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\Models\User
-     */
+
     protected function create(array $data)
     {
         return User::create([
@@ -70,4 +83,10 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
+
+    public function test()
+    {
+        dd('dupa');
+    }
+
 }

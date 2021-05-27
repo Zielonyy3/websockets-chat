@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\TestEvent;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,5 +25,10 @@ class HomeController extends Controller
     public function index()
     {
         return view('chat.index');
+    }
+
+    public function sendMail()
+    {
+        event(new TestEvent('tekst w ciele', 'test@mail.pl'));
     }
 }
