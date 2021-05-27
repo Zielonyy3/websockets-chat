@@ -19,7 +19,7 @@
                                     <div class="d-flex align-items-center justify-content-between mb-1">
                                         <h6 class="mb-0">Jason Doe</h6><small class="small font-weight-bold">25 Dec</small>
                                     </div>
-                                    <p class="font-italic mb-0 text-small">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
+                                    <p class="font-italic mb-0 text-small">{{__t('common.confirm_account', 'test')}}</p>
                                 </div>
                             </div>
                         </a>

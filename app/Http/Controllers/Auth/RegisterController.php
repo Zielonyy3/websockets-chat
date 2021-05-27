@@ -55,38 +55,11 @@ class RegisterController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Contracts\Validation\Validator
      */
-//    public function register(RegisterUserRequest $request)
-//    {
-//        $user =$this->userRepository->find(1);
-////        event(new Registered($user = $this->userRepository->create($request->data()->toArray())));
-//        event(new Registered($user));
-//
-//        $this->guard()->login($user);
-//    }
-
-
-    protected function validator(array $data)
+    public function register(RegisterUserRequest $request)
     {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
-    }
+        event(new Registered($user = $this->userRepository->create($request->data()->toArray())));
 
-
-    protected function create(array $data)
-    {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
-    }
-
-    public function test()
-    {
-        dd('dupa');
+        $this->guard()->login($user);
     }
 
 }
