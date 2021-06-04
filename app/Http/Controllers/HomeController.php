@@ -4,29 +4,26 @@ namespace App\Http\Controllers;
 
 use App\Events\TestEvent;
 use App\Models\User;
+use App\Repositories\Contracts\UserRepositoryContract;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    private UserRepositoryContract $userRepository;
+
+
+    public function __construct(UserRepositoryContract $userRepository)
     {
         $this->middleware('auth');
+        $this->userRepository = $userRepository;
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
+
     public function index()
     {
-        return view('chat.index');
+        $users = $this->userRepository->all();
+        return view('chat.index', compact('users'));
     }
 
     public function sendMail(User $user)

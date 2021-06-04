@@ -29,19 +29,10 @@ class RegisterController extends Controller
 
     use RegistersUsers;
 
-    /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
     protected $redirectTo = RouteServiceProvider::HOME;
     private UserRepositoryContract $userRepository;
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+
     public function __construct(UserRepositoryContract $userRepository)
     {
         $this->middleware('guest');
@@ -49,17 +40,12 @@ class RegisterController extends Controller
     }
 
 
-    /**
-     * Handle a registration request for the application.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
     public function register(RegisterUserRequest $request)
     {
         event(new Registered($user = $this->userRepository->create($request->data()->toArray())));
 
         $this->guard()->login($user);
+        return redirect()->route('home');
     }
 
 }

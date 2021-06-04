@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -20,5 +22,8 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/send-mail/{user}', [App\Http\Controllers\HomeController::class, 'sendMail'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/send-mail/{user}', [HomeController::class, 'sendMail'])->name('test.mail');
+
+
+Route::get('/users/{user}',[UsersController::class, 'show'])->name('users.show');

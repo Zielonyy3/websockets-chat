@@ -20,6 +20,9 @@ window.Vue = require('vue').default;
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('chat-to-user', require('./components/ChatToUser').default);
+Vue.component('send-message-form', require('./components/SendMessageForm').default);
+Vue.component('users-list', require('./components/UsersList').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -29,5 +32,15 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 const app = new Vue({
     el: '#app',
+    mounted() {
+        console.log('Root mounted');
+    },
+    data: {
+        groceryList: [
+            {id: 0, text: 'Vegetables'},
+            {id: 1, text: 'Cheese'},
+            {id: 2, text: 'Whatever else humans are supposed to eat'}
+        ]
+    }
 });
 
