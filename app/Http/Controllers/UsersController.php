@@ -14,9 +14,4 @@ class UsersController extends Controller
         $this->userRepository = $userRepository;
     }
 
-    public function getAllUsers()
-    {
-        $user = $this->userRepository->all();
-        return response()->json($user, 200);
-    }
 }

@@ -20,4 +20,5 @@ return [
     'reset_password' => 'Zresetuj hasło',
     'send_password_reset_link' => 'Wyślij link do resetu hasła',
     'profile' => 'Profil',
+    'recent' => 'Ostatnie',
 ];

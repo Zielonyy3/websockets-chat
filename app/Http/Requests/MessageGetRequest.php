@@ -2,11 +2,11 @@
 
 namespace App\Http\Requests;
 
-use App\Dtos\MessageCreateDto;
+use App\Dtos\MessageGetDto;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
+use Spatie\DataTransferObject\DataTransferObject;
 
-class MessageSendRequest extends FormRequest
+class MessageGetRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,16 +28,16 @@ class MessageSendRequest extends FormRequest
         return [
             'receiver_id' => ['required', 'exists:users,id'],
             'sender_id' => ['required', 'exists:users,id'],
-            'text' => 'string',
         ];
     }
 
-    public function data(): MessageCreateDto
+
+    public function data(): MessageGetDto
     {
-        return new MessageCreateDto([
+        return new MessageGetDto([
             'receiver_id' => $this->input('receiver_id'),
-            'text' => $this->input('text'),
             'sender_id' => $this->input('sender_id'),
         ]);
     }
 }
+

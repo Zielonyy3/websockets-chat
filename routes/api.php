@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\UsersApiController;
 use App\Http\Controllers\MessagesController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Http\Request;
@@ -22,4 +23,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::post('send-message', [MessagesController::class, 'sendMessage'])->name('messages.send');
-Route::get('get-all-users', [UsersController::class, 'getAllUsers'])->name('messages.send');
+Route::get('get-messages', [MessagesController::class, 'getMessages'])->name('messages.send');
+
+Route::get('get-all-users', [UsersApiController::class, 'getAllUsers'])->name('messages.send');

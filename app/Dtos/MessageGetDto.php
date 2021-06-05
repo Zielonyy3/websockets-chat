@@ -4,9 +4,8 @@ namespace App\Dtos;
 
 use Spatie\DataTransferObject\DataTransferObject;
 
-class MessageCreateDto extends DataTransferObject
+class MessageGetDto extends DataTransferObject
 {
     public int $receiver_id;
     public int $sender_id;
-    public string $text;
 }

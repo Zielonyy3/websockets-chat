@@ -7,6 +7,8 @@
 require('./bootstrap');
 
 window.Vue = require('vue').default;
+window.moment = require('moment');
+
 
 /**
  * The following block of code may be used to automatically register your
@@ -23,6 +25,10 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('chat-to-user', require('./components/ChatToUser').default);
 Vue.component('send-message-form', require('./components/SendMessageForm').default);
 Vue.component('users-list', require('./components/UsersList').default);
+Vue.component('message', require('./components/Message').default);
+Vue.component('conversation-section', require('./components/ConversationSection').default);
+Vue.component('chat-box', require('./components/ChatBox').default);
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -33,14 +39,31 @@ Vue.component('users-list', require('./components/UsersList').default);
 const app = new Vue({
     el: '#app',
     mounted() {
-        console.log('Root mounted');
+        this.getAllUsers();
     },
     data: {
-        groceryList: [
-            {id: 0, text: 'Vegetables'},
-            {id: 1, text: 'Cheese'},
-            {id: 2, text: 'Whatever else humans are supposed to eat'}
-        ]
-    }
+        receiverId: $('meta[name="temp-user"]').attr('content'),
+        users: [],
+        activeUser: {},
+    },
+    methods: {
+        getAllUsers() {
+            axios.get('api/get-all-users', {
+                params: {
+                    receiver_id: this.receiverId,
+                },
+            })
+                .then((response) => {
+                    this.users = response.data;
+                    this.changeUser(this.users[0])
+                })
+                .catch((error) => {
+                    console.warn(error.response.data.message)
+                });
+        },
+        changeUser(changedUser) {
+            this.activeUser = changedUser;
+        }
+    },
 });
 
