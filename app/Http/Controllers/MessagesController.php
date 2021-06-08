@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Dtos\MessageGetDto;
+use App\Events\MessageSent;
 use App\Http\Requests\MessageGetRequest;
 use App\Http\Requests\MessageSendRequest;
 use App\Repositories\Contracts\MessageRepositoryContract;
@@ -19,6 +20,9 @@ class MessagesController extends Controller
     public function sendMessage(MessageSendRequest $request)
     {
         $message = $this->messageRepository->create($request->data()->toArray());
+
+        broadcast(new MessageSent($message))->toOthers();
+
         return response()->json($message, 200);
     }
 

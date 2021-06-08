@@ -9,7 +9,6 @@ require('./bootstrap');
 window.Vue = require('vue').default;
 window.moment = require('moment');
 
-
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -40,6 +39,7 @@ const app = new Vue({
     el: '#app',
     mounted() {
         this.getAllUsers();
+        this.listen();
     },
     data: {
         receiverId: $('meta[name="temp-user"]').attr('content'),
@@ -63,7 +63,8 @@ const app = new Vue({
         },
         changeUser(changedUser) {
             this.activeUser = changedUser;
-        }
+        },
+
     },
 });
 

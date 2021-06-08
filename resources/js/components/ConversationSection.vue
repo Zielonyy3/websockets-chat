@@ -24,6 +24,7 @@
 export default {
     mounted() {
         this.downloadMessages();
+        this.listen();
     },
     props: ['active-user', 'receiver-id'],
     data: function () {
@@ -52,7 +53,12 @@ export default {
         },
         sentMessage(message){
             this.messages.push(message);
-        }
+        },
+        listen() {
+            Echo.channel('chat').listen('MessageSent',  (e) => {
+                console.log('jest', e);
+            })
+        },
 
     }
 }

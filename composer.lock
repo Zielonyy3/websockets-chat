@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a1d1deed8bd9f3894a70ec2d5ddadd19",
+    "content-hash": "0b61d92b0a71ab06e9214449136c01c1",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2298,16 +2298,16 @@
         },
         {
             "name": "pusher/pusher-php-server",
-            "version": "7.0.0",
+            "version": "7.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pusher/pusher-http-php.git",
-                "reference": "a9a7f739a2a03e3fef33633499ba586cabd57686"
+                "reference": "7757a09209d20ff95b077ae48dc25f49a6ad94a2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pusher/pusher-http-php/zipball/a9a7f739a2a03e3fef33633499ba586cabd57686",
-                "reference": "a9a7f739a2a03e3fef33633499ba586cabd57686",
+                "url": "https://api.github.com/repos/pusher/pusher-http-php/zipball/7757a09209d20ff95b077ae48dc25f49a6ad94a2",
+                "reference": "7757a09209d20ff95b077ae48dc25f49a6ad94a2",
                 "shasum": ""
             },
             "require": {
@@ -2353,9 +2353,9 @@
             ],
             "support": {
                 "issues": "https://github.com/pusher/pusher-http-php/issues",
-                "source": "https://github.com/pusher/pusher-http-php/tree/7.0.0"
+                "source": "https://github.com/pusher/pusher-http-php/tree/7.0.1"
             },
-            "time": "2021-05-10T15:22:51+00:00"
+            "time": "2021-05-26T11:22:28+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
@@ -7655,7 +7655,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.3|^8.0"
+        "php": "^8"
     },
     "platform-dev": [],
     "plugin-api-version": "2.0.0"

@@ -11,5 +11,24 @@
 @endsection
 
 @section('scripts')
+    <script>
+        // const appS = new Vue({
+        //     el: '#app',
+        //     mounted(){
+        //         console.log('Jestem')
+        //         this.listen();
+        //     },
+        //     methods: {
+        //         listen(){
+        //             console.log('naslucuhuje');
+        //             Echo.channel('chat')
+        //                 .listen('MessageSent', (mess) => {
+        //                     console.log(mess);
+        //                 })
+        //         },
+        //     }
+        // })
+
+    </script>
 @endsection
 
