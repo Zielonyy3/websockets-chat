@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Api\UsersApiController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +21,12 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/send-mail/{user}', [HomeController::class, 'sendMail'])->name('test.mail');
+
+
+Route::get('/users/{user}',[UsersController::class, 'show'])->name('users.show');
+Route::get('/test/',[UsersApiController::class, 'getAllUsers2'])->name('test');
+Route::get('/test-message',[\App\Http\Controllers\MessagesController::class, 'getMessages2'])->name('test-message');
